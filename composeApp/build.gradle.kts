@@ -21,6 +21,8 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
+            implementation("uk.co.caprica:vlcj:4.8.2")
+            implementation("uk.co.caprica:vlcj-natives:4.8.0")
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
