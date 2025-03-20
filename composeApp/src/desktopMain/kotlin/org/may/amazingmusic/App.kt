@@ -112,34 +112,3 @@ fun App() {
         }
     }
 }
-
-@Composable
-fun <T> AsyncImage(
-    load: suspend () -> T,
-    painter: @Composable (T) -> Painter,
-    contentDescription: String,
-    modifier: Modifier = Modifier,
-    contentScale: ContentScale = ContentScale.Fit,
-) {
-    val img: T? by produceState<T?>(null) {
-        value = withContext(Dispatchers.IO) {
-            try {
-                load()
-            } catch (e: IOException) {
-                e.printStackTrace()
-                null
-            }
-        }
-    }
-    if (img != null) {
-        Image(
-            painter = painter(img!!),
-            contentDescription = contentDescription,
-            contentScale = contentScale,
-            modifier = modifier
-        )
-    }
-}
-
-@OptIn(ExperimentalResourceApi::class)
-fun loadImg(url: String): ImageBitmap = URL(url).openStream().buffered().readAllBytes().decodeToImageBitmap()

@@ -5,7 +5,6 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
 }
-
 kotlin {
     jvm("desktop")
     
@@ -23,6 +22,11 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation("uk.co.caprica:vlcj:4.8.2")
             implementation("uk.co.caprica:vlcj-natives:4.8.0")
+            implementation("org.openjfx:javafx-media:21:win")
+            implementation("org.openjfx:javafx-base:21:win")
+            implementation("org.openjfx:javafx-graphics:21:win")
+            implementation("org.openjfx:javafx-swing:21:win")
+            implementation("org.openjfx:javafx-controls:21:win")
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
