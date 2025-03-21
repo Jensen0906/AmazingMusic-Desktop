@@ -20,17 +20,17 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
-            implementation("uk.co.caprica:vlcj:4.8.2")
-            implementation("uk.co.caprica:vlcj-natives:4.8.0")
+            implementation("com.squareup.retrofit2:retrofit:2.9.0")
+            implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+        }
+        desktopMain.dependencies {
+            implementation(compose.desktop.currentOs)
+            implementation(libs.kotlinx.coroutines.swing)
             implementation("org.openjfx:javafx-media:21:win")
             implementation("org.openjfx:javafx-base:21:win")
             implementation("org.openjfx:javafx-graphics:21:win")
             implementation("org.openjfx:javafx-swing:21:win")
             implementation("org.openjfx:javafx-controls:21:win")
-        }
-        desktopMain.dependencies {
-            implementation(compose.desktop.currentOs)
-            implementation(libs.kotlinx.coroutines.swing)
         }
     }
 }
