@@ -1,13 +1,18 @@
 package org.may.amazingmusic.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
-import androidx.compose.material.Card
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.sharp.KeyboardArrowUp
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import javafx.application.Platform
 import javafx.scene.media.Media
@@ -16,7 +21,7 @@ import org.may.amazingmusic.viewmodel.KuwoViewModel
 import java.net.URI
 
 @Composable
-fun MusicPlayer(kuwoViewModel: KuwoViewModel) {
+fun MusicPlayer(kuwoViewModel: KuwoViewModel, openSongList : () -> Unit) {
     val currentSong by kuwoViewModel.currentSong.collectAsState()
     val isPlaying by kuwoViewModel.isPlaying
     val isError by kuwoViewModel.playError
@@ -43,10 +48,11 @@ fun MusicPlayer(kuwoViewModel: KuwoViewModel) {
 
     var loadImgDone by remember { mutableStateOf(false) }
 
-    Card(modifier = Modifier.fillMaxSize(), shape = RoundedCornerShape(10.dp)) {
+    Box(modifier = Modifier.fillMaxSize(),) {
         Column(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxSize().background(color = Color.White, shape = RoundedCornerShape(10.dp))
         ) {
             Text(text = "Play some music", modifier = Modifier.padding(bottom = 20.dp))
 
@@ -77,7 +83,16 @@ fun MusicPlayer(kuwoViewModel: KuwoViewModel) {
             if (isError) {
                 Text(text = "播放错误")
             }
+
+
         }
+        IconButton(
+            onClick = openSongList,
+            modifier = Modifier.align(Alignment.BottomCenter)
+        ) {
+            Icon(Icons.Sharp.KeyboardArrowUp, "")
+        }
+
     }
 
     DisposableEffect(Unit) {
