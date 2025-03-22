@@ -1,6 +1,8 @@
 package org.may.amazingmusic.ui
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
@@ -20,6 +22,7 @@ fun AsyncImage(
     load: suspend () -> ImageBitmap?,
     contentDescription: String,
     modifier: Modifier = Modifier,
+    shape: RoundedCornerShape,
     contentScale: ContentScale = ContentScale.Fit,
 ) {
     val img: ImageBitmap? by produceState<ImageBitmap?>(null) {
@@ -33,12 +36,14 @@ fun AsyncImage(
         }
     }
     if (img != null) {
-        Image(
-            painter = BitmapPainter(img!!),
-            contentDescription = contentDescription,
-            contentScale = contentScale,
-            modifier = modifier
-        )
+        Card(shape = shape) {
+            Image(
+                painter = BitmapPainter(img!!),
+                contentDescription = contentDescription,
+                contentScale = contentScale,
+                modifier = modifier,
+            )
+        }
     } else {
         // Todo
     }
